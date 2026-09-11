@@ -1,0 +1,12 @@
+/* 
+  Create Database 
+  This file creates a new database named data_warehouse.
+
+  Warning : The below code will drop the database with the name data_warehouse if such database exists and it will create a one.
+*/
+
+drop database if exists data_warehouse ;
+create database data_warehouse ;
+use data_warehouse ;
+
+
