@@ -12,7 +12,7 @@
 */
 
 
--- ================= Create View for Customers =====================
+-- ================= Create Dimension : gold.dim_customers =====================
 CREATE VIEW gold.dim_customers AS 
 SELECT 
 	ROW_NUMBER() OVER(ORDER BY ci.cst_id) AS customer_key, -- This is a surrogate key
@@ -36,7 +36,7 @@ LEFT JOIN silver.erp_loc_a101 cl
 ON	      ci.cst_key = cl.cid 
 
 
--- ================== Create View for Products =====================
+-- ================== Create Dimension gold.dim_products =====================
 CREATE VIEW gold.dim_products AS
 SELECT 
 	ROW_NUMBER() OVER (ORDER BY p.prd_start_date, p.prd_key) AS product_key,
@@ -57,7 +57,7 @@ ON		  p.cat_id = pc.id
 WHERE	  p.prd_end_date IS NULL -- Filtering out the historic data of the products
 
 
--- ==================== Create View for Sales ======================
+-- ==================== Create Fact : gold.fact_sales ======================
 CREATE VIEW gold.fact_sales AS 
 SELECT 
 	sd.sls_ord_num AS order_number,
